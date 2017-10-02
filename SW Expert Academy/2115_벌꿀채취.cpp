@@ -21,21 +21,28 @@ void GO(int x, int y,int n,int m ,int c){
     
     //첫번째 벌꿀통
     vector<int> v;
+    //배열에 담자
     for(int j=y ; j<y+m;j++){
         v.push_back(arr[x][j]);
     }
+    
+    //정렬
     sort(v.begin(),v.end());
     reverse(v.begin(), v.end());
     
+    //첫번째 꿀통의 최댓값을 구하자 / 2중 루프
     for(int i=0 ; i <m ; i++){
         int tmp = 0;
         int t_a = 0;
         for(int j=i;j<m;j++){
+            //현재 꿀의 값을 더해주고
             tmp += v[j];
             if(tmp <= c){
+                //c보다 작으면 더하고
                 t_a += v[j]*v[j];
             }
             else{
+                //크면 다시 뺸다
                 tmp -= v[j];
             }
         }
