@@ -8,9 +8,12 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string.h>
+#include <string>
 using namespace std;
 
 int ans;
+bool visited[1000000];
 
 int check(int *arr, int s){
     int sum = 0;
@@ -28,11 +31,23 @@ void change(int *arr , int cur, int m,int s,int from){
         return;
     }
     
-    for(int i=from;i<s-1;i++){
+    int curnum = check(arr,s);
+    if(visited[curnum]) return;
+    visited[curnum] = true;
+    
+    for(int i=from;i<s;i++){
         for(int j=i+1;j<s;j++){
-            swap(arr[i],arr[j]);
+            if(i==j) continue;
+            
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            
             change(arr, cur+1, m, s,i);
-            swap(arr[i],arr[j]);
+            
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
         }
     }
 }
@@ -44,6 +59,7 @@ void solve(int tc){
     ans = 0;
     int tmp[6] = {0,};
     int arr[6] = {0,};
+    memset(visited, false, sizeof(visited));
     int s=0;
     while(n>=10){
         tmp[s++] = n%10;
