@@ -40,7 +40,7 @@ void Bsearch(int idx,int n){
             RightF += mat[i].m / ((mat[i].x-mid)*(mat[i].x-mid));
         }
         
-        if(right - mid < 1e-12){
+        if(right - left < 1e-9){
             cout << fixed;
             cout.precision(10);
             
