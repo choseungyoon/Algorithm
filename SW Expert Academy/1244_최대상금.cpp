@@ -74,6 +74,7 @@ void solve(int tc){
     change(arr,0,m,s,0);
     cout<<'#'<<tc<<' ';
     cout<<ans<<'\n';
+    
 }
 
 int main(){
