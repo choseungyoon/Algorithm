@@ -29,10 +29,12 @@ void BFS(int n){
     queue<Node> q;
     q.push({0,0,0,0});
     visited[0][0] = 1;
+    
     while(!q.empty()){
         int x = q.front().x;
         int y = q.front().y;
         q.pop();
+        
         for(int k=0;k<4;k++){
             int tempX = x + dir[k][0];
             int tempY = y + dir[k][1];
@@ -40,15 +42,23 @@ void BFS(int n){
             if(tempX<0 || tempX>=n || tempY < 0 || tempY >=n) continue;
             
             if(visited[tempX][tempY] == 0){
+                
                 visited[tempX][tempY] = 1;
                 arr[tempX][tempY].cur = arr[x][y].cur + arr[tempX][tempY].val;
+                
+                
                 q.push({arr[tempX][tempY].val,tempX,tempY,arr[tempX][tempY].cur});
+            
             }
             else{
+                
                 if(arr[tempX][tempY].cur > arr[x][y].cur + arr[tempX][tempY].val){
+                    
                     arr[tempX][tempY].cur = arr[x][y].cur + arr[tempX][tempY].val;
                     q.push({arr[tempX][tempY].val,tempX,tempY,arr[tempX][tempY].cur});
+                    
                 }
+                
             }
         }
     }
@@ -69,8 +79,8 @@ void solve(int tc){
             visited[i][j] = 0;
         }
     }
-    
     BFS(n);
+    
     cout<<'#'<<tc<<' '<<arr[n-1][n-1].cur<<'\n';
     
 }
