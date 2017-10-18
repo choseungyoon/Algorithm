@@ -39,6 +39,7 @@ int ans = 0;
 void BFS(){
     queue<Node1> group1;
     queue<Node1> group2;
+    
     int finish[15];
     for(int i=0;i<15;i++) finish[i] = 0;
     
@@ -57,8 +58,11 @@ void BFS(){
         person_info.push(tmp);
     }
     
+    
     int time = 1;
+    
     vector<Stare> one;
+    
     vector<Stare> two;
     
     while(1){
@@ -66,10 +70,14 @@ void BFS(){
         
         //계단 먼저
         int wait_one = (int)one.size();
+        
         if(wait_one > 0){
             int delete_cnt = 0;
+            
             for(int i=0;i<wait_one;i++){
+                
                 if(i>2) break;
+                
                 if(one[i].spent + 1 == arr[s1.x][s1.y]){
                     //탈출성공
                     finish[one[i].idx] = 1;
@@ -79,16 +87,20 @@ void BFS(){
                     one[i].spent += 1;
                 }
             }
+            
             for(int i=0;i<delete_cnt;i++){
                 one.erase(one.begin());
             }
+            
         }
         
         int g1_cnt = (int)group1.size();
         
         for(int i=0 ; i<g1_cnt;i++){
+            
             Node1 tmp = group1.front();
             group1.pop();
+            
             if(time == tmp.dis){
                 //계단도착
                 one.push_back({tmp.idx,0});
@@ -135,6 +147,8 @@ void BFS(){
         }
         int end_flag = 0;
         
+        
+        
         for(int i=0;i<num;i++){
             if(finish[i]==0){
                 end_flag = 1;
@@ -150,6 +164,8 @@ void BFS(){
             time++;
             if(time > ans) break;
         }
+        
+        
         
     }
     
