@@ -25,9 +25,11 @@ int BFS(int k, int x, int y, int n){
             
             int temp = 0;
             int r = 0;
+            
             for(int s = i - (2*k-1)/2 ; s <= i + (2*k-1)/2 ; s++){
                 
                 if(s<i){
+                    
                     for(int t = j-r ; t <= j + r ; t++){
                         if(s>=0 && s<n && t>=0 && t<n){
                             if(arr[s][t] == 1) temp++;
@@ -44,6 +46,7 @@ int BFS(int k, int x, int y, int n){
                     }
                     r--;
                 }
+                
             }
             
             if(ans < temp) ans = temp;
@@ -69,7 +72,9 @@ void solve(int tc){
     int ans = 0;
     
     for(int k=1;k <=n+1 ; k++){
+        
         int tmp = BFS(k,0,0,n);
+        
         if(tmp*m - k*k - (k-1)*(k-1) >= 0 )
             if(ans < tmp) ans = tmp;
     }
